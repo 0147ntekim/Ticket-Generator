@@ -18,7 +18,6 @@ const App = () => {
   return (
     <>
       <div className="App relative min-h-[100vh] flex flex-col pt-[35px] lg:pt-[70px] pb-[100px] px-[30px] xs:px-[60px] sm:px-[130px] md:px-[150px] mid:px-[200px] custom:px-[220px] lg:px-[300px] xl:px-[400px]">
-
         <Circle />
         <Line />
         <Top/>

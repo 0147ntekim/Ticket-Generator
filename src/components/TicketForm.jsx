@@ -44,7 +44,20 @@ const TicketForm = () => {
   }
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault(); //prevent default form submission
+
+    const { avatar, fullName, email, githubUsername } = formData;
+
+    //check if all fields are filled
+    if(!avatar || !fullName.trim() || !email.trim() || !githubUsername.trim()){
+      setError('please fields cant be empty.');
+      return
+    }
+
+    //clear any previous errors
+    setError("");
+
+    //Navigate with form data
     navigate("/ticket", { state: { formData } });
   };
 
@@ -96,6 +109,7 @@ const TicketForm = () => {
             className="w-full text-sm text-white bg-neutral-900 border border-neutral-300 rounded-[12px] p-4"
             onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
           />
+          {error && <p className="text-red-500 text-xs">{error}</p>}
         </div>
         <div className="group groups">
           <label htmlFor="" className="block text-[18px] md:text-[22px] font-[300] text-gray-300 mb-3 mt-7 lg:mt-10">Email Address</label>
@@ -107,6 +121,7 @@ const TicketForm = () => {
             className="w-full text-sm text-white bg-neutral-900 border border-neutral-300 rounded-[12px] p-4"
             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
           />
+          {error && <p className="text-red-500 text-xs">{error}</p>}
         </div>
         <div className="group groups">
           <label htmlFor="" className="block text-[18px] md:text-[22px] font-[300] text-gray-300 mb-3 mt-7 lg:mt-10">Github Username</label>
@@ -118,6 +133,7 @@ const TicketForm = () => {
             className="w-full text-sm text-white bg-neutral-900 border border-neutral-300 rounded-[12px] p-4"
             onChange={(e) => setFormData({ ...formData, githubUsername: e.target.value })}
           />
+          {error && <p className="text-red-500 text-xs">{error}</p>}
         </div>
 
         <button
